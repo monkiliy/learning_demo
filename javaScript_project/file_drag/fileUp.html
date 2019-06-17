@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>文件上传</title>
+    <style>
+        .target{
+            width: 300px;
+            height: 300px;
+            color: #fff;
+            font-size: 25px;
+            line-height: 300px;
+            text-align: center;
+            background: -webkit-radial-gradient(0% 0%,circle farthest-corner,#c0c0aa,#1cefff);
+        }
+        .wrapper{
+            position: relative;
+            width: 300px;
+            height: 40px;
+            margin-top: 30px;
+        }
+        .progress{
+            position: absolute;
+            left: 0;
+            width: 250px;
+            height: 40px;
+            border-radius: 20px;
+            border: 1px solid #333;
+            overflow: hidden;
+        }
+        .numCtl{
+            position: absolute;
+            right: 0;
+            width: 50px;
+            height: 40px;
+            line-height: 40px;
+            font-size: 25px;
+            text-align: center;
+        }
+        .ctl{
+            width: 0;
+            height: 40px;
+            background: #333;
+        }
+    </style>
+</head>
+<body>
+    <div class="target">
+        把文件拖拽到这里上传
+    </div>
+    <div class="wrapper">
+        <div class="progress">
+            <div class="ctl"></div>
+        </div>
+        <div class="numCtl">0%</div>
+    </div>
+    <script src="./index.js"></script>
+    <script>
+        var target = document.getElementsByClassName("target")[0],
+            progress = document.getElementsByClassName("progress")[0],
+            ctl = document.getElementsByClassName("ctl")[0],
+            numCtl = document.getElementsByClassName("numCtl")[0];
+        // var reader = new FileReader(),
+        //     fileList,
+        //     total,
+        //     step = 1024*1024,
+        //     loaded = 0;
+        target.addEventListener("dragover",function(e){
+            e.preventDefault();
+        })
+        target.addEventListener("drop",function(e){
+            e.preventDefault();
+            fileList = e.dataTransfer.files;
+            var fileLoad = new FileLoader(fileList,Event);
+            // total = fileList[0].size;
+            // readFile(0,step);
+            // eventListener();
+        })
+        // function readFile(start, step){
+        //     if(fileList[0].slice){
+        //         reader.readAsText(fileList[0].slice(start, start + step));
+        //     }else{
+        //         reader.readerAsText(fileList[0]);
+        //     }
+        // }
+        // function eventListener(){
+        //     reader.onprogress = function(e){
+        //         onProgress(e.loaded);
+        //     }
+        //     reader.onload = function(){
+        //         onLoad();
+        //     }
+        // }
+        var Event = {
+            progressIng: function(per){
+                ctl.style.width = per * 250 + 'px';
+                numCtl.innerHTML = Math.round(per * 100) + '%';
+            },
+            Loaded: function(loaded){
+                console.log("上传了"+ loaded + "部分");
+            },
+            loadDone: function(){
+                console.log('上传完成');
+            }
+        }
+        // function onProgress(num){
+        //     loaded += num;
+        //     var per = loaded/total;
+        //     if( per > 1){
+        //         per = 1;
+        //     }
+        //     Event.progressIng(per);
+        // }
+        // function onLoad(){
+        //     //上传文件
+        //     Event.Loaded();
+        //     if( loaded < total){
+        //         readFile(loaded, step);
+        //     }else{
+        //         console.log(start);
+        //         Event.loadDone();
+        //     }
+        // }
+    </script>
+</body>
+</html>
