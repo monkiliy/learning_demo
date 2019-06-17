@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>3D</title>
+    <style>
+        body{
+            background: linear-gradient(to right, #2980b9, #6dd5fa, #fff);
+        }
+        .wrapper{
+            width: 400px;
+            height: 400px;
+            margin: 160px auto;
+            perspective: 800px;
+        }
+        .box{
+            position: relative;
+            width: 400px;
+            height: 400px;
+            transform-style: preserve-3d;
+            animation: move 3s linear infinite;
+        }
+        .box div{
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 400px;
+            height: 400px;
+            opacity: .5;
+        }
+        .box div img{
+            width: 400px;
+            height: 400px;
+        }
+        .box div:nth-child(1){
+            transform: translateZ(200px);
+        }
+        .box div:nth-child(6){
+            transform: rotateY(180deg) translateZ(200px);
+        }
+        .box div:nth-child(2){
+            transform: rotateY(-90deg) translateZ(200px);
+        }
+        .box div:nth-child(5){
+            transform: rotateY(90deg) translateZ(200px);
+        }
+        .box div:nth-child(3){
+            transform: rotateX(90deg) translateZ(200px);
+        }
+        .box div:nth-child(4){
+            transform: rotateX(-90deg) translateZ(200px);
+        }
+        @keyframes move {
+            0%{
+                transform: rotate3d(1,1,1,0);
+            }
+            100%{
+                transform: rotate3d(1,1,1,360deg);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="wrapper">
+        <div class="box">
+            <div><img src="./images/1.jfif" alt=""></div>
+            <div><img src="./images/2.jfif" alt=""></div>
+            <div><img src="./images/3.jfif" alt=""></div>
+            <div><img src="./images/4.jfif" alt=""></div>
+            <div><img src="./images/5.jfif" alt=""></div>
+            <div><img src="./images/6.jfif" alt=""></div>
+        </div>
+    </div>
+</body>
+</html>
