@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="./index.css">
+</head>
+<body>
+    <div class="container">
+        <ul>
+            <li>
+                <img src="./images/1.jfif" alt="">
+                <div class="box">
+                    <div class="content">beautiful</div>
+                </div>
+            </li>
+            <li>
+                <img src="./images/2.png" alt="">
+                <div class="box">
+                    <div class="content">beautiful</div>
+                </div>
+            </li>
+            <li>
+                <img src="./images/3.jfif" alt="">
+                <div class="box">
+                    <div class="content">beautiful</div>
+                </div>
+            </li>
+            <li>
+                <img src="./images/7.jfif" alt="">
+                <div class="box">
+                    <div class="content">beautiful</div>
+                </div>
+            </li>
+            <li>
+                <img src="./images/5.jfif" alt="">
+                <div class="box">
+                    <div class="content">beautiful</div>
+                </div>
+            </li>
+        </ul>
+    </div>
+    <script>
+        var oli = document.getElementsByTagName("li");
+        var oBox = document.getElementsByClassName("box");
+        // 网页加载
+        window.onload = function(){
+            console.log("a");
+            for(var i = 0; i < oli.length; i++){
+                oli[i].getElementsByTagName("img")[0].style.transform = "translateY(0)";
+                oli[i].getElementsByTagName("img")[0].style.transition = "transform 0.5s linear " + i*0.1 + "s";
+            }
+        }
+        for(var i = 0; i < oli.length; i++){
+            oli[i].onmouseenter = function(e){
+                var num = dir(e,this);
+                var oCont = this.getElementsByClassName("content")[0];
+                oCont.classList = 'content';
+                switch(num){
+                    case 0:
+                        oCont.classList.add("in-top");
+                        break;
+                    case 1:
+                        oCont.classList.add("in-right");
+                        break;
+                    case 2:
+                        oCont.classList.add("in-bottom");
+                        break;
+                    case 3:
+                        oCont.classList.add("in-left");
+                        break;
+                }
+            }
+            oli[i].onmouseleave = function(e){
+                var num = dir(e,this);
+                console.log(num);
+                var oCont = this.getElementsByClassName("content")[0];
+                switch(num){
+                    case 0:
+                        oCont.classList.add("out-top");
+                        break;
+                    case 1:
+                        oCont.classList.add("out-right");
+                        break;
+                    case 2:
+                        oCont.classList.add("out-bottom");
+                        break;
+                    case 3:
+                        oCont.classList.add("out-left");
+                        break;
+                }
+            }
+        }
+        // 判断方向
+        function dir(e,ele){
+            var x = (e.offsetX - ele.offsetWidth/2) * (ele.offsetWidth > ele.offsetHeight ? ele.offsetHeight/ele.offsetWidth : 1);
+            var y = (e.offsetY - ele.offsetHeight/2) * (ele.offsetHeight > ele.offsetWidth ? ele.offsetWidth/ele.offsetHeight : 1);
+            var b = (Math.round(((Math.atan2(y,x) * 180/Math.PI)+180)/90)+3)%4;
+            return b;
+        }
+    </script>
+</body>
+</html>
