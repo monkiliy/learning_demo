@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>2列布局</title>
+    <style>
+        body{
+            margin: 0;
+            padding: 0;
+        }
+        .wrapper{
+            border: 3px solid #ccc;
+            margin-top: 30px;
+        }
+        .left{
+            float: left;
+            width: 200px;
+            height: 200px;
+            background: linear-gradient(to right,#2193b0,#6dd5ed);
+        }
+        .right{
+            /* margin-left: 200px; */
+            height: 200px;
+            background: linear-gradient(to right,#8E2DE2,#4A00E0);
+            overflow: hidden;/*触发bfc*/
+        }
+        .wrapper1{
+            margin-top: 30px;
+            position: relative;
+            height: 200px;
+            border: 3px solid  #ccc;
+        }
+        .left1{
+            position: absolute;
+            width: 200px;
+            height: 200px;
+            background: linear-gradient(to right, #4A00E0, #FFFDE4);
+        }
+        .right1{
+            position: absolute;
+            left: 200px;
+            right: 0;
+            height: 200px;
+            background: linear-gradient(to right, #ADA996, #F2F2F2, #DBDBDB, #EAEAEA);
+        }
+        .wrapper2{
+            margin-top: 30px;
+            display: flex;
+            border: 3px solid  #ccc;
+        }
+        .left2{
+            width: 200px;
+            height: 200px;
+            background: linear-gradient(to right, #C9D6FF, #E2E2E2);
+        }
+        .right2{
+            flex-grow: 1;
+            height: 200px;
+            background: linear-gradient(to right, #B2FEFA, #0ED2F7);
+        }
+        .wrapper3{
+            margin-top: 30px;
+            display: flex;
+            border: 3px solid  #ccc;
+        }
+        .left3{
+            width: 200px;
+            height: 200px;
+            background: linear-gradient(to right, #F7971E, #FFD200);
+        }
+        .right3{
+            width: 300px;
+            height: 200px;
+            background: linear-gradient(to right, #B2FEFA, #0ED2F7);
+        }
+        .center{
+            width: 300px;
+            height: 200px;
+            background: linear-gradient(to right, #c0c0aa, #1cefff);
+            flex-grow: 1;
+        }
+    </style>
+</head>
+<body>
+    <!-- 左侧固定 右侧自适应 margin-left 与overflow触发bfc模式-->
+    <div class="wrapper">
+        <div class="left">left</div>
+        <div class="right">right</div>
+    </div>
+    <!-- position absolute 实现 -->
+    <div class="wrapper1">
+        <div class="left1">left</div>
+        <div class="right1">right</div>
+    </div>
+    <!-- flex实现2列布局 -->
+    <div class="wrapper2">
+        <div class="left2">left</div>
+        <div class="right2">right</div>
+    </div>
+    <!-- flex实现3列布局 -->
+    <div class="wrapper3">
+        <div class="left3">left</div>
+        <div class="center">center</div>
+        <div class="right3">right</div>
+    </div>
+</body>
+</html>
