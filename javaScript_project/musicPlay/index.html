@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>MusicPlay</title>
+    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="./font_xhca0y8rf7/iconfont.css">
+    <link rel="stylesheet" href="./font_4eby5aza6va/iconfont.css">
+    <style>
+        @font-face {
+            font-family: 'iconfont';
+            src: url('iconfont.eot');
+            src: url('iconfont.eot?#iefix') format('embedded-opentype'),
+                url('iconfont.woff2') format('woff2'),
+                url('iconfont.woff') format('woff'),
+                url('iconfont.ttf') format('truetype'),
+                url('iconfont.svg#iconfont') format('svg');
+        }
+        .iconfont {
+            font-family: "iconfont" !important;
+            font-size: 16px;
+            font-style: normal;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="disc"><img id="discImg" src="./image/timeMachine.jfif" alt=""></div>
+        <div class="controls clearfixed">
+            <audio id="audio" src="./music/time Machine.mp3"></audio>
+            <div class="player">
+                <i class="change-style iconfont">&#xe623;</i>
+                <i class="previous iconfont">&#xe636;</i>
+                <i class="control iconfont">&#xe61d;</i>
+                <i class="next iconfont">&#xe635;</i>
+            </div>
+            <div class="progress clearfixed">
+                <div class="playTime">00:00</div>
+                <div class="line">
+                    <div class="move">
+                        <div class="dot"></div>
+                    </div>
+                    <div class="playedCtl"></div>
+                </div>
+                <div class="allTime">00:00</div>
+            </div>
+            <div class="volume">
+                <i class="iconfont volumeState">&#xe759;</i>
+                <div class="volumeLine">
+                    <div class="volumeCtl"></div>
+                    <div class="volumeMove"><div class="volumeDot"></div></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="./index.js"></script>
+</body>
+</html>
