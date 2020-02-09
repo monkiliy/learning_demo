@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>ajax</title>
+    <style>
+        .box{
+            width: 100px;
+            height: 100px;
+            line-height: 100px;
+            text-align: center;
+            color: #fff;
+            background: #ff6700;
+        }
+    </style>
+</head>
+<body>
+    <ul>
+        <li><a href="value=news">news</a></li>
+        <li><a href="value=about">about</a></li>
+        <li><a href="value=contact">contact</a></li>
+    </ul>
+    <div class="box"></div>
+    <script src="../../framework/jQuery/jquery-3.4.1.js"></script>
+    <script>
+         $('a').click(function(){
+             let data = $(this).attr('href');
+             console.log(data);
+             if($(this).attr('href') == 'value=news'){
+                 $.ajax({
+                     type : 'GET',
+                     url : './demo.php',
+                     data : data,
+                     async : true,
+                     success : (data) => {
+                         console.log(data);
+                     }
+                 })
+             }
+             return false;
+         })
+    </script>
+</body>
+</html>

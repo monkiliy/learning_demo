@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>jsonp</title>
+    <style>
+        body, div, input, ul, li, button{
+            margin: 0;
+            padding: 0;
+            outline: none;
+        }
+        .wrapper{
+            position: relative;
+            width: 400px;
+            margin: 400px auto;
+            text-align: center;
+            /* border: 1px solid #ccc; */
+        }
+        #search{
+            width: 300px;
+            height: 36px;
+            border: 2px solid #ff5000; 
+            border-radius: 18px;
+        }
+        #btn{
+            position: absolute;
+            width: 70px;
+            height: 40px;
+            top: 0;
+            right: 48px;
+            font-size: 20px;
+            line-height: 40px;
+            text-align: center;
+            color: #fff;
+            border-top-right-radius: 20px;
+            border-bottom-right-radius: 20px;
+            background: #ff4200;
+        }
+        .keywords{
+            display: none;
+            width: 300px;
+            margin: 0 auto;
+            list-style: none;
+            background: linear-gradient(to right, #C9D6FF, #e2e2e2);
+            border: 1px solid #ccc;
+        }
+        .keywords li{
+            width: 100%;
+            height: 30px;
+            text-align: left;
+            font-size: 20px;
+            line-height: 30px;
+            color: #f2f4f6;
+            padding: 0 30px;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+        }
+    </style>
+</head>
+<body>
+    <div class="wrapper">
+        <input type="text" id="search">
+        <button id="btn">搜索</button>
+        <ul class="keywords"></ul>
+    </div>
+    <script src="../../framework/jQuery/jquery-3.4.1.js"></script>
+    <script>
+        // $('#search').input(function(){
+        //     let val = $('#search').val();
+        //     let oscript = document.createElement('script');
+        //     oscript.src = 'https://suggest.taobao.com/sug?q=as&callback=jsonp938';
+        //     document.body.appendChild(oscript);
+        // }).remove();
+        let oSearch = document.getElementById('search');
+        oSearch.oninput = function(){
+            let val = $('#search').val();
+            let oscript =  document.createElement('script');
+            oscript.src = 'https://suggest.taobao.com/sug?q='+val+'&callback=cbs';
+            document.body.appendChild(oscript);
+            oscript.remove();
+        }
+        function cbs(data){
+            console.log(data);
+            let str = '';
+            let len = data.result.length;
+            let newdata = data.result;
+            if(newdata.length > 0){
+                $('.keywords').show().html('');
+                for(let i = 0; i < len; i++){
+                    str += `<li>${newdata[i][0]}</li>`;
+                }
+                $('.keywords').append(str);
+            }else{
+                $('.keywords').hide();
+            }
+        }
+    </script>
+</body>
+</html>
